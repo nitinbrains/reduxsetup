@@ -22,6 +22,7 @@ import {addTodo} from '../actions/DispActions'
           const newData=
             {  id:uuid(),
                 item:new_todo, 
+                isChecked:false
              }
             
           
@@ -43,7 +44,7 @@ import {addTodo} from '../actions/DispActions'
          <Form>
          <FormGroup style={{marginBottom:'20px'}}>
           <Label for="exampleQuest">New Todo:</Label>
-          <Input type="text" name="myItem" value={this.state.myItem} onChange={e=>this.change(e)} id="exampleQuest" placeholder="Enter Todo" required/>
+          <Input type="text" name="myItem" value={this.state.myItem} onChange={e=>this.change(e)} id="exampleQuest" placeholder="Enter some text" required/>
         </FormGroup>
      <Button type="submit" onClick={this.submitForm}>Submit</Button>  
         </Form>

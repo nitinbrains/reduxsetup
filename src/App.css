@@ -1,3 +1,15 @@
 .cont{
   margin: 10%;
 }
+
+.mybadge{
+  margin-left: 70%;
+  border-radius: 1rem !important;
+  font-size: 100% !important;
+}
+.bgimg{
+  background-image: url(./backg.png);
+  background-size: cover;
+  max-width: 100%;
+  height: 700px;
+}

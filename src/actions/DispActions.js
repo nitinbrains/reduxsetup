@@ -1,5 +1,5 @@
-import {GET_TODOS,DELETE_TODO,ADD_TODO} from './Types'
-import axios from 'axios';
+import {GET_TODOS,DELETE_TODO,ADD_TODO,EDIT_TODO,TOGGLE_CHANGE} from './Types'
+
 
 
 export const getTodos=()=>{
@@ -22,10 +22,19 @@ export const deleteTodo=(id)=>{
     }
 }
 
-// export const getTodos=()=>async dispatch =>{
-// const res= await axios.get('https://jsonplaceholder.typicode.com/users');
-//     dispatch({
-//         type: GET_TODOS,
-//         payload: res.data
-//     })
-// }
+export const editTodo=(Todo)=>{
+    return{
+        type:EDIT_TODO,
+        payload:Todo
+    }
+}
+
+
+export const toggleChange=(id)=>{
+    return{
+        type:TOGGLE_CHANGE,
+        payload:id
+    }
+}
+
+

@@ -3,30 +3,30 @@ import './App.css';
 import {Provider} from 'react-redux';
 import store from './store'
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom'
+import {Button} from 'reactstrap'
 import TodoList from './components/TodoList'
-import TodoList2 from './components/TodoList2'
 import AddTodo from './components/AddTodo'
+import EditTodo from './components/EditTodo'
+import Home from './Home';
+
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
       <div className="cont">
-      <h3>Hello</h3>
       <Router>
        <div>
-       <Link to="/todolist">TodoList1</Link>
-      <Link to="/todolist2">TodoList2</Link>
-      <Link to="/addtodo">AddTodo</Link>
+      <Link style={{marginRight:"10px"}} to="/todolist"><Button color="info" size="lg" block>Show List</Button></Link>
+       <Link style={{marginRight:"10px"}} to="/addtodo"><Button color="info" size="lg" block>Add Todo</Button></Link>
       <Switch>
+      <Route exact path="/" component={Home}/>
       <Route exact path="/todolist" component={TodoList} />
-      <Route exact path="/todolist2" component={TodoList2} />
       <Route exact path="/addtodo" component={AddTodo} />
+      <Route exact path="/edit/:id" component={EditTodo}/>
       </Switch>
        </div>
-      
       </Router>
-      {/* <Link to="/todolist">TodoList</Link> */}
       </div>
       </Provider>
     );

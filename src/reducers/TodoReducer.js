@@ -1,26 +1,31 @@
-import{GET_TODOS,DELETE_TODO,ADD_TODO} from '../actions/Types'
+import{GET_TODOS,DELETE_TODO,ADD_TODO,EDIT_TODO, TOGGLE_CHANGE} from '../actions/Types'
 
 const initialState={
     Todos: [
         {
             id:1,
-            item:'learn redux'
+            item:'learn react Native',
+            isChecked:false
         },
         {
             id:2,
-            item:'learn scss'
+            item:'learn Redux',
+            isChecked:false
         },
         {
             id:3,
-            item:'learn firebase'
+            item:'learn firebase',
+            isChecked:false
         },
         {
             id:4,
-            item:'learn saga'
+            item:'learn saga',
+            isChecked:false
         },
         {
             id:5,
-            item:'learn thunk'
+            item:'learn thunk',
+            isChecked:false
         }
     ]
     
@@ -42,6 +47,19 @@ export default function(state=initialState, action) {
        return{
            ...state,
            Todos:state.Todos.filter(v=>v.id!==action.payload)
+       }
+       case EDIT_TODO:
+       return{
+           ...state,
+           Todos:[...state.Todos.filter(v=>v.id!=action.payload.id),action.payload]
+       }
+       case TOGGLE_CHANGE:
+       return{
+
+           ...state,
+           Todos:state.Todos.map(
+               c=>c.id==action.payload ? Object.assign(c, { isChecked: !c.isChecked}) : c)
+           
        }
        default:
        return state;
