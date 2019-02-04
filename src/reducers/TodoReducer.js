@@ -1,41 +1,22 @@
-import{GET_TODOS,DELETE_TODO,ADD_TODO,EDIT_TODO, TOGGLE_CHANGE} from '../actions/Types'
+import{GET_TODOS,GET_TODO,UPDATE_TODO,DELETE_TODO,ADD_TODO,EDIT_TODO, TOGGLE_CHANGE} from '../actions/Types'
 
 const initialState={
-    Todos: [
-        {
-            id:1,
-            item:'learn react Native',
-            isChecked:false
-        },
-        {
-            id:2,
-            item:'learn Redux',
-            isChecked:false
-        },
-        {
-            id:3,
-            item:'learn firebase',
-            isChecked:false
-        },
-        {
-            id:4,
-            item:'learn saga',
-            isChecked:false
-        },
-        {
-            id:5,
-            item:'learn thunk',
-            isChecked:false
-        }
-    ]
+    Todos: [],
+    Todo:{}
     
 };
-
 export default function(state=initialState, action) {
    switch(action.type){
        case GET_TODOS:
        return {
-           ...state
+           ...state,
+           Todos:action.payload
+           
+       };
+       case GET_TODO:
+       return {
+           ...state,
+           Todo:action.payload
            
        };
        case ADD_TODO:
@@ -48,10 +29,11 @@ export default function(state=initialState, action) {
            ...state,
            Todos:state.Todos.filter(v=>v.id!==action.payload)
        }
-       case EDIT_TODO:
+       case UPDATE_TODO:
        return{
            ...state,
-           Todos:[...state.Todos.filter(v=>v.id!=action.payload.id),action.payload]
+        //    Todos:[...state.Todos.filter(v=>v.id!=action.payload.id),action.payload]
+              Todos: state.Todos.map(v=>v.id==action.payload.id ? (v=action.payload) : v)
        }
        case TOGGLE_CHANGE:
        return{

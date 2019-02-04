@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import uuid from 'uuid'
+//import uuid from 'uuid'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import {connect} from 'react-redux'
 import {addTodo} from '../actions/DispActions'
@@ -20,9 +20,9 @@ import {addTodo} from '../actions/DispActions'
         
 
           const newData=
-            {  id:uuid(),
-                item:new_todo, 
-                isChecked:false
+            {  
+                "item":new_todo, 
+                "isChecked":false
              }
             
           

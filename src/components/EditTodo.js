@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import {connect} from 'react-redux'
-import {editTodo,getTodos} from '../actions/DispActions'
+import {getTodo,updateTodo} from '../actions/DispActions'
 
  class EditTodo extends Component {
      state={
          myItem:''
      }
-     componentDidMount(){
-        this.props.getTodos();
-        const {Todos}=this.props;
-        const paramId=this.props.match.params.id;
-        const filtData=Todos.filter(v=>v.id==paramId)
-        const filtObject=filtData[0]
-        const filtItem=filtObject.item;
+
+     UNSAFE_componentWillReceiveProps(nextProps, nextState){
+        const {item}=nextProps.Todo;
         this.setState({
-            myItem:filtItem
+            myItem:item
         })
-        
+     }
+
+     componentDidMount(){
+        const {id}=this.props.match.params;
+        this.props.getTodo(id);
+        const {Todo}=this.props; 
       }
 
      change=(e)=>{
@@ -34,7 +35,7 @@ import {editTodo,getTodos} from '../actions/DispActions'
               item:this.state.myItem,
               isChecked:false
           }
-         this.props.editTodo(Todo);
+         this.props.updateTodo(Todo);
       }
 
   render() { 
@@ -54,8 +55,8 @@ import {editTodo,getTodos} from '../actions/DispActions'
 }
 
 const mapStateToProps =(state)=>({
-    Todos: state.Todo.Todos
+    Todo: state.Todo.Todo
   });
 
 
-export default connect(mapStateToProps, {editTodo,getTodos})(EditTodo);
+export default connect(mapStateToProps, {getTodo,updateTodo})(EditTodo);
